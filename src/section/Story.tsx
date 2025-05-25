@@ -1,7 +1,7 @@
 export const Story = () => {
   return (
     <section className="w-full flex justify-center px-25 gap-14 flex-row">
-      <img src="./png/story_illustration.png" />
+      <img src="./png/story_illustration.png" className="w-1/2 h-auto"/>
       <div className="flex flex-col gap-4 text-justify text-[#6C7A89]">
         <h3 className="text-[#2C3E50] text-3xl">Our Story</h3>
         <p>
