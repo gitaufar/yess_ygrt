@@ -34,7 +34,7 @@ const CartItems = ({ item, addCart, removeCart }: CartItemsProps) => {
               onClick={() => addCart(item)}
               className={`w-8 h-8 relative flex items-center justify-center rounded-full border-2 border-[#FF6666] ${
                 item.stock < 1 ? "opacity-50 cursor-default" : "cursor-pointer"
-              }  `}
+              } `}
             >
               <div className="absolute w-5 h-0.5 bg-[#FF6666]" />
               <div className="absolute h-5 w-0.5 bg-[#FF6666]" />

@@ -33,11 +33,15 @@ const CartModal = ({ isOpen, closeModal, items, addCart, removeCart }: CartModal
             <div className="w-full flex justify-end">
               <X size={44} color="#FF6666" onClick={closeModal} className="hover:scale-110 transition-all cursor-pointer"/>
             </div>
-            {Array.from(items.values()).map((item) => (
+            {Array.from(items.values()).map((item) => {
+              totalPrice += item.harga * item.quantity
+              return (
               <CartItems key={item.id} item={item} addCart={addCart} removeCart={removeCart} />
-            ))}
-            <div className="w-full flex justify-end">
-            
+              )
+            })}
+            <div className="w-full flex justify-end text-black font-bold gap-5">
+            <p className="text-2xl">Total:</p>
+            <p className="text-2xl w-30">Rp.{totalPrice}</p>
             </div>
             <div className="px-12 py-5 bg-white border border-[#FF6666] text-[#FF6666] hover:text-white rounded-lg hover:bg-[#FF6666] cursor-pointer transition-all">
               <p className="text-2xl font-bold">Proceed to payment</p>
