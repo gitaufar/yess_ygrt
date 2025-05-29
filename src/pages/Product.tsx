@@ -1,13 +1,17 @@
 import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import ProductCard from "../componen/ProductCard";
-import { greekDrink1L, greekDrink250ml, readyDrink, stick, type ProductData } from "../data/product";
+import type { ProductData } from "../data/product";
 
 type ProductProps = {
-  onClick: (item: ProductData) => void
+  onClick: (item: ProductData) => void;
+  greekDrink1L: ProductData[];
+  greekDrink250ml: ProductData[];
+  readyDrink: ProductData[];
+  stick: ProductData[];
 }
 
-export default function Product({onClick}: ProductProps) {
+export default function Product({onClick , greekDrink1L, greekDrink250ml, readyDrink, stick}: ProductProps) {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [maxDrag, setMaxDrag] = useState(0);
 
@@ -43,7 +47,7 @@ export default function Product({onClick}: ProductProps) {
           >
             {readyDrink.map((item, index) => (
               <motion.div
-                key={item.nama}
+                key={item.id}
                 className="shrink-0"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -66,7 +70,7 @@ export default function Product({onClick}: ProductProps) {
           >
             {stick.map((item, index) => (
               <motion.div
-                key={item.nama}
+                key={item.id}
                 className="shrink-0"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -89,7 +93,7 @@ export default function Product({onClick}: ProductProps) {
           >
             {greekDrink250ml.map((item, index) => (
               <motion.div
-                key={item.nama}
+                key={item.id}
                 className="shrink-0"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -112,7 +116,7 @@ export default function Product({onClick}: ProductProps) {
           >
             {greekDrink1L.map((item, index) => (
               <motion.div
-                key={item.nama}
+                key={item.id}
                 className="shrink-0"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
