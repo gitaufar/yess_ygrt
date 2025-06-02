@@ -4,14 +4,18 @@ import ProductCard from "../componen/ProductCard";
 import type { ProductData } from "../data/product";
 
 type ProductProps = {
-  onClick: (item: ProductData) => void;
   greekDrink1L: ProductData[];
   greekDrink250ml: ProductData[];
   readyDrink: ProductData[];
   stick: ProductData[];
-}
+};
 
-export default function Product({onClick , greekDrink1L, greekDrink250ml, readyDrink, stick}: ProductProps) {
+export default function Product({
+  greekDrink1L,
+  greekDrink250ml,
+  readyDrink,
+  stick,
+}: ProductProps) {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [maxDrag, setMaxDrag] = useState(0);
 
@@ -53,7 +57,7 @@ export default function Product({onClick , greekDrink1L, greekDrink250ml, readyD
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <ProductCard product={item} onClick={onClick} />
+                <ProductCard product={item} />
               </motion.div>
             ))}
           </motion.div>
@@ -76,7 +80,7 @@ export default function Product({onClick , greekDrink1L, greekDrink250ml, readyD
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <ProductCard product={item} onClick={onClick}/>
+                <ProductCard product={item} />
               </motion.div>
             ))}
           </motion.div>
@@ -99,7 +103,7 @@ export default function Product({onClick , greekDrink1L, greekDrink250ml, readyD
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <ProductCard product={item} onClick={onClick}/>
+                <ProductCard product={item} />
               </motion.div>
             ))}
           </motion.div>
@@ -122,7 +126,7 @@ export default function Product({onClick , greekDrink1L, greekDrink250ml, readyD
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <ProductCard product={item} onClick={onClick}/>
+                <ProductCard product={item} />
               </motion.div>
             ))}
           </motion.div>

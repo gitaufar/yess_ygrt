@@ -1,12 +1,14 @@
+import { useCart } from "../context/CartProvider";
 import type { ProductData } from "../data/product";
 
 type CartItemsProps = {
   item: ProductData;
-  addCart: (item: ProductData) => void;
-  removeCart: (item: ProductData) => void;
 };
 
-const CartItems = ({ item, addCart, removeCart }: CartItemsProps) => {
+const CartItems = ({ item }: CartItemsProps) => {
+  const context = useCart();
+  if (!context) return null;
+  const { productAdd, productMin, handleQuantityChange } = context;
   return (
     <div className="w-full flex flex-row items-center">
       <img src={item.image} className="w-[160px] h-[160px] rounded-lg" />
@@ -18,20 +20,24 @@ const CartItems = ({ item, addCart, removeCart }: CartItemsProps) => {
         <div className="flex flex-row gap-5">
           <div className="flex flex-row gap-1.5">
             <div
-              onClick={() => removeCart(item)}
+              onClick={() => productMin(item)}
               className={`${
                 item.stock > 9 ? "opacity-50 cursor-default" : "cursor-pointer"
               } w-8 h-8 relative flex items-center rounded-full border-2 border-[#FF6666] p-1 `}
             >
               <div className="w-full h-0.5 bg-[#FF6666]" />
             </div>
+            <input
+              type="number"
+              value={item.quantity}
+              onChange={(e) => handleQuantityChange(e,item)}
+              min={0}
+              max={10}
+              className={`w-20 h-8 relative flex text-center no-spinner rounded-full border-2 border-[#FF6666]`}
+            />
+
             <div
-              className={`w-20 h-8 relative flex items-center justify-center rounded-full border-2 border-[#FF6666]`}
-            >
-              {item.quantity}
-            </div>
-            <div
-              onClick={() => addCart(item)}
+              onClick={() => productAdd(item)}
               className={`w-8 h-8 relative flex items-center justify-center rounded-full border-2 border-[#FF6666] ${
                 item.stock < 1 ? "opacity-50 cursor-default" : "cursor-pointer"
               } `}

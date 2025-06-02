@@ -1,10 +1,13 @@
+import { useCart } from "../context/CartProvider";
 import type { ProductData } from "../data/product";
 
 type ProductCardProps = {
   product: ProductData;
-  onClick: (item: ProductData) => void;
 };
-const ProductCard = ({ product, onClick }: ProductCardProps) => {
+const ProductCard = ({ product }: ProductCardProps) => {
+  const context = useCart();
+  if(!context) return null;
+  const { productAdd } = context;
   return (
     <div className="flex flex-col items-center p-6 shadow-md hover:shadow-lg text-center gap-5 w-[400px]">
       <img src={product.image} className="w-[160px] h-[160px] rounded-lg" />
@@ -15,7 +18,7 @@ const ProductCard = ({ product, onClick }: ProductCardProps) => {
         <p className="text-[#FF6666] text-base">Out of Stock</p>
       ) : (
         <div
-          onClick={() => onClick(product)}
+          onClick={() => productAdd(product)}
           className="cursor-pointer flex justify-center items-center flex-row bg-[#FF6666] py-2.5 px-6 rounded-lg shadow-md hover:scale-105 transition-all gap-1 text-white text-base"
         >
           <img src="./svg/cart_icon.svg" className="h-[16px] w-auto" />
